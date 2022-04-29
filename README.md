@@ -19,7 +19,7 @@ then, for using the software, after downloading the whole package, you need to c
 
 <code>$ python3 compileModule.py build_ext --inplace </code>
 
-The basic sound analysis/synthesis functions, or models, are in the directory <code>Functions/models</code> and there is a graphical interface and individual example functions in <code>software/models_interface</code>. To execute the applications you have to go to the directory <code>main.py</code> and type: 
+The basic sound analysis/synthesis functions, or models, are in the python archive <code>main.py</code>. To execute the application you have to go to the directory where the <code>main.py</code> file is and type: 
 
 <code>$ python3 main.py </code>
 
