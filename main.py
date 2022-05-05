@@ -6,10 +6,14 @@ from tkinter import filedialog
 from tkinter import messagebox
 
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'Functions/models/'))
-import Functions.models.utilFunctions as UF
+from Functions.models import utilFunctions as UF
 from Functions.transformations_interface import stftMorph_function as sT
 
 #Functions
+def play_song():
+    filename = filedialog.askopenfilename()
+    UF.wavplay(filename)
+
 def browse_file1():
     try:
         #
@@ -42,10 +46,18 @@ def transformation_synthesis():
         H1 = int(master.H1.get())
         smoothf = float(master.smoothf.get())
         balancef = float(master.balancef.get())
-        sT.main(inputFile1, inputFile2, window1, window2, M1, M2, N1, N2, H1, smoothf, balancef)
+        y, fs = sT.main(inputFile1, inputFile2, window1, window2, M1, M2, N1, N2, H1, smoothf, balancef)
+        save_audio(y,fs)
+
 
     except ValueError as errorMessage:
         messagebox.showerror("Input values error", errorMessage)
+
+def save_audio(y,fs):
+    outputFile = filedialog.asksaveasfile()
+    print(outputFile.name + '_stftMorph.wav')
+    #outputFile = 'Functions/transformations_interface/output_sounds/' + os.path.basename(inputFile1)[:-4] + '_stftMorph.wav'
+    UF.wavwrite(y, fs, outputFile.name + '_stftMorph.wav')
 
 #Initialize the master root as a Tkinter interface
 master = Tk()
@@ -185,7 +197,7 @@ compute = Button(master, text="Apply Transformation", command = transformation_s
 compute.grid(row=11, column=0, padx=5, pady=(10, 15), sticky=W)
 
 # BUTTON TO PLAY TRANSFORMATION SYNTHESIS OUTPUT
-master.transf_output = Button(master, text=">", command=lambda: UF.wavplay('Functions/transformations_interface/output_sounds/' + os.path.basename(master.filelocation1.get())[:-4] + '_stftMorph.wav'), bg="gray30", fg="white")
+master.transf_output = Button(master, text=">", command=play_song, bg="gray30", fg="white")
 master.transf_output.grid(row=11, column=0, padx=(165, 5), pady=(10, 15), sticky=W)
 
 # define options for opening file

@@ -42,8 +42,8 @@ def main(inputFile1='../../sounds/ocean.wav', inputFile2='../../sounds/speech-ma
 	mY, pY = STFT.stftAnal(y, w1, N1, H1)
 	
 	# write output sound
-	outputFile = 'Functions/transformations_interface/output_sounds/' + os.path.basename(inputFile1)[:-4] + '_stftMorph.wav'
-	UF.wavwrite(y, fs, outputFile)
+	#outputFile = 'Functions/transformations_interface/output_sounds/' + os.path.basename(inputFile1)[:-4] + '_stftMorph.wav'
+	#UF.wavwrite(y, fs, outputFile)
 
 	# create figure to plot
 	plt.figure(figsize=(9, 6))
@@ -91,6 +91,7 @@ def main(inputFile1='../../sounds/ocean.wav', inputFile2='../../sounds/speech-ma
 
 	plt.tight_layout()
 	plt.show()
+	return y,fs
 
 if __name__ == '__main__':
 	main()
