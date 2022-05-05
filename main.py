@@ -6,7 +6,7 @@ from tkinter import filedialog
 from tkinter import messagebox
 
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'Functions/models/'))
-import utilFunctions as UF
+import Functions.models.utilFunctions as UF
 from Functions.transformations_interface import stftMorph_function as sT
 
 #Functions
